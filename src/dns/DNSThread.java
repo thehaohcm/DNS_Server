@@ -60,10 +60,10 @@ public class DNSThread implements Runnable {
         checkAlive();
         //}
 
-        for (int i = 0; i < arrIP.length; i++) {
-            System.out.println("IP: " + arrIP[i][0]);
-        }
-
+    }
+    
+    public void setArrIPUpdate(String[][] arrIP){
+        this.arrIP=arrIP;
     }
 
     public void checkAlive() {

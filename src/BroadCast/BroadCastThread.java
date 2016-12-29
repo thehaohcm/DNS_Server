@@ -24,7 +24,6 @@ public class BroadCastThread implements Runnable,AutoOffInterface{
     private int port=1995;
     DatagramSocket server;
     
-    int timeForCheckingAlive=60000;
     int numOfPacket=6;
     DNSApplication mainApp;
     

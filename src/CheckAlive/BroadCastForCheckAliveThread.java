@@ -40,6 +40,7 @@ public class BroadCastForCheckAliveThread implements Runnable,AutoOffInterface{
             String content="getName";
             send=content.getBytes();
             sender=new DatagramPacket(send, send.length,InetAddress.getByName(ipBroadCast),port);
+            System.out.println("*************************************Giá trị Ip BroadCast: "+ipBroadCast);
             for(int i = 0; i < numOfPacket; i++){
                 server.send(sender);
             }

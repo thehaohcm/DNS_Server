@@ -27,6 +27,8 @@ public class CheckAliveThread implements Runnable { //kiểm tra giá trị mả
     String ipBroadCast;
 
     int port;
+    
+    // Sau mỗi 60s, hệ thống tự động gửi gói DNS BroadCast kiểm tra sự tồn tại của các Slave Server
     int timeForCheckingAlive=60000;
 
     HashMap<String, String> arrIP;
@@ -51,7 +53,7 @@ public class CheckAliveThread implements Runnable { //kiểm tra giá trị mả
     }
 
     private void checkAndUpdate() {
-        String[][] Other = new String[0][2];
+        //String[][] Other = new String[0][2];
         if (arrIP.size() > 0) { //sau khi broadcast lai hệ thống -> mới + cũ
             ArrayList<Integer> arrMissSuffixDomain = new ArrayList<Integer>(); //chứa giá trị index của các phần tử chết trong mảng arrServer (không có Suffix Domain)
             //HashMap<String,String> arrIP_t = new HashMap<String,String>();
@@ -201,7 +203,6 @@ public class CheckAliveThread implements Runnable { //kiểm tra giá trị mả
             
             
             
-            
 //            if (size_chet > 0 && size_songdu >= 0) {
 //                if (size_chet > size_songdu) {
 //                    if(size_songdu == 0){
@@ -272,8 +273,9 @@ public class CheckAliveThread implements Runnable { //kiểm tra giá trị mả
                 
                 app.getInfo(DNSLookup.getMyIPAddress(), InetAddress.getByName(DNSLookup.getMyIPBroadCast()),DNSEnum.RootServerSendBroadCast);
 
-                //Thread.sleep(1200);
+                Thread.sleep(1200);
                 checkAndUpdate();
+                mainThread.setArrIPUpdate(arrServer);
 
             } catch (Exception ex) {
 

@@ -144,6 +144,8 @@ public class miniRMIDNSThread implements Runnable,AutoOffInterface{
                         receiver = new DatagramPacket(receive, receive.length);
                         server.receive(receiver);
                         app.getInfo(receiver.getAddress(),DNSLookup.getMyIPAddress(), DNSEnum.ServerToClient);
+                        Thread updateDatabaseThread=new Thread(new UpdateDatabaseThread(app,receive));
+                        updateDatabaseThread.start();
                         ipDNS_t = receiver.getAddress();
                         if (!ipDNS_t.equals(ipDNS)) {
                             break;
@@ -188,6 +190,8 @@ public class miniRMIDNSThread implements Runnable,AutoOffInterface{
                         server.receive(receiver);
                         ipDNS_t = receiver.getAddress();
 
+//                        Thread updateDatabaseThread=new Thread(new UpdateDatabaseThread(app, receive));
+//                        updateDatabaseThread.start();
 //                        dnsPacket = new DNSPacket(receive);
 //                        System.out.println("Noi dung nhan tu Server: " + dnsPacket.toString());
 //                        dnsPacket.getStringArr();
